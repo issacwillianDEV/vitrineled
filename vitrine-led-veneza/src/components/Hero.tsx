@@ -130,19 +130,19 @@ export default function Hero() {
                         Ver planos
                     </button>
                 </div>
-
-                <p
-                    ref={signatureRef}
-                    className="text-text-muted text-xs sm:text-sm"
-                    style={{ opacity: 0 }}
-                >
-                    Projeto implantado e operado exclusivamente pela{" "}
-                    <span className="text-text-secondary font-medium">Innova Mídia Led</span>.
-                </p>
             </div>
 
+            <p
+                ref={signatureRef}
+                className="absolute z-10 bottom-20 md:bottom-24 left-1/2 -translate-x-1/2 text-center text-text-muted text-xs sm:text-sm px-4 w-full max-w-3xl"
+                style={{ opacity: 0 }}
+            >
+                Projeto implantado e operado exclusivamente pela{" "}
+                <span className="text-text-secondary font-medium">Innova Mídia Led</span>.
+            </p>
+
             {/* Scroll Indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+            <div className="absolute bottom-7 md:bottom-8 left-1/2 -translate-x-1/2 z-10">
                 <button
                     onClick={() => scrollTo("#about")}
                     className="scroll-indicator flex flex-col items-center gap-2 text-text-muted hover:text-primary transition-colors"
