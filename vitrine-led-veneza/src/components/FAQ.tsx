@@ -41,7 +41,11 @@ export default function FAQ() {
 
     return (
         <section id="faq" className="py-24 md:py-32 bg-dark-card">
-            <div className="max-w-3xl mx-auto px-4 sm:px-6" ref={sectionRef}>
+            <div
+                className="section-shell max-w-[min(96vw,78rem)]"
+                data-immersive-content
+                ref={sectionRef}
+            >
                 <div className="text-center mb-12">
                     <span className="text-primary text-sm font-semibold tracking-widest uppercase">
                         Dúvidas

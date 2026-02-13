@@ -1,6 +1,7 @@
 "use client";
 
 import { useScrollReveal } from "@/lib/animations";
+import { bannerRodoviaImage } from "@/lib/siteAssets";
 
 export default function Location() {
     const contentRef = useScrollReveal();
@@ -10,14 +11,21 @@ export default function Location() {
             {/* Parallax Background */}
             <div
                 className="absolute inset-0 parallax-bg opacity-30"
+                data-parallax-layer
+                data-depth="0.12"
                 style={{
-                    backgroundImage:
-                        "url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=2069&auto=format&fit=crop')",
+                    backgroundImage: `url(${bannerRodoviaImage.src})`,
                 }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-dark via-dark/90 to-dark" />
+            <div
+                className="absolute inset-0"
+                style={{
+                    background:
+                        "radial-gradient(900px 520px at 12% 18%, rgba(30, 79, 163, 0.16), transparent 68%), radial-gradient(700px 460px at 84% 78%, rgba(255, 122, 26, 0.12), transparent 70%), rgba(2, 4, 9, 0.8)",
+                }}
+            />
 
-            <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="section-shell relative z-10 max-w-[min(96vw,104rem)]" data-immersive-content>
                 <div ref={contentRef} className="grid md:grid-cols-2 gap-12 items-center">
                     {/* Left — Info */}
                     <div>

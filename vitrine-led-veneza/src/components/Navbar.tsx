@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import { logoImage } from "@/lib/siteAssets";
 
 const navLinks = [
     { label: "O Projeto", href: "#about" },
@@ -35,20 +37,23 @@ export default function Navbar() {
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "navbar-blur border-b border-white/5" : "bg-transparent"
                     }`}
             >
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-16 md:h-20">
+                <div className="section-shell max-w-[min(96vw,118rem)]">
+                    <div className="flex items-center justify-between h-20 md:h-24">
                         {/* Logo */}
                         <button
                             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                            className="flex items-center gap-2 group"
+                            className="flex items-center group"
                         >
-                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center">
-                                <span className="text-black font-bold text-sm">V</span>
-                            </div>
-                            <span className="font-display font-bold text-lg tracking-tight">
-                                <span className="gradient-text">Vitrine</span>{" "}
-                                <span className="text-white">LED</span>
-                            </span>
+                            <Image
+                                src={logoImage}
+                                alt="Logo Vitrine LED Veneza"
+                                width={320}
+                                height={320}
+                                quality={100}
+                                sizes="(max-width: 768px) 88px, 112px"
+                                className="w-[clamp(5.5rem,10vw,7rem)] h-auto object-contain"
+                                priority
+                            />
                         </button>
 
                         {/* Desktop Nav */}

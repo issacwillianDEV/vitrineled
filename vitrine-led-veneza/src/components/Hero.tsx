@@ -3,10 +3,12 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import { heroImage, logoImage } from "@/lib/siteAssets";
 
 export default function Hero() {
     const heroRef = useRef<HTMLDivElement>(null);
-    const titleRef = useRef<HTMLHeadingElement>(null);
+    const titleRef = useRef<HTMLDivElement>(null);
     const subtitleRef = useRef<HTMLParagraphElement>(null);
     const ctaRef = useRef<HTMLDivElement>(null);
     const signatureRef = useRef<HTMLParagraphElement>(null);
@@ -53,45 +55,53 @@ export default function Hero() {
             ref={heroRef}
             className="relative min-h-screen flex items-center justify-center overflow-hidden"
         >
-            {/* Background Video */}
-            <div className="absolute inset-0 z-0">
-                <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="w-full h-full object-cover"
-                    poster="/hero-poster.jpg"
-                >
-                    <source src="/hero-video.mp4" type="video/mp4" />
-                </video>
+            {/* Background Image */}
+            <div className="absolute inset-0 z-0" data-parallax-layer data-depth="0.16">
+                <Image
+                    src={heroImage}
+                    alt="Painel LED em rodovia no período noturno"
+                    fill
+                    priority
+                    sizes="100vw"
+                    className="object-cover scale-[1.04] brightness-[0.45] saturate-[0.82] contrast-[1.03]"
+                />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-dark/80 via-dark/60 to-dark" />
-                <div className="absolute inset-0 bg-gradient-to-r from-dark/40 to-transparent" />
+                <div
+                    className="absolute inset-0"
+                    style={{
+                        background:
+                            "radial-gradient(1200px 700px at 10% 10%, rgba(30, 79, 163, 0.08), transparent 62%), radial-gradient(900px 640px at 90% 80%, rgba(255, 122, 26, 0.04), transparent 65%), linear-gradient(to bottom, rgba(3,6,13,0.92), rgba(3,6,13,0.82) 35%, rgba(3,6,13,0.94) 100%)",
+                    }}
+                />
             </div>
 
             {/* Content */}
-            <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center pt-20">
-                {/* Badge */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                    className="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 rounded-full px-4 py-1.5 mb-8"
-                >
-                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                    <span className="text-primary text-sm font-medium">Pré-cadastro aberto</span>
-                </motion.div>
-
-                <h1
+            <div
+                data-immersive-content
+                className="section-shell relative z-10 max-w-[min(96vw,94rem)] text-center pt-20"
+            >
+                <div
                     ref={titleRef}
-                    className="font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-[0.95] mb-6"
+                    className="mx-auto mb-8 w-[min(88vw,34rem)]"
                     style={{ opacity: 0 }}
                 >
-                    <span className="text-white">VITRINE LED</span>
-                    <br />
-                    <span className="gradient-text">VENEZA</span>
-                </h1>
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.92 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.2, duration: 0.7 }}
+                    >
+                        <Image
+                            src={logoImage}
+                            alt="Logo Vitrine LED Veneza"
+                            width={960}
+                            height={960}
+                            quality={100}
+                            priority
+                            sizes="(max-width: 768px) 75vw, 34rem"
+                            className="w-full h-auto object-contain mx-auto"
+                        />
+                    </motion.div>
+                </div>
 
                 <p
                     ref={subtitleRef}

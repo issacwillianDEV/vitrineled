@@ -1,6 +1,7 @@
 "use client";
 
 import { useStaggerReveal } from "@/lib/animations";
+import { fluxoTrafegoImage } from "@/lib/siteAssets";
 
 const opportunities = [
     {
@@ -41,8 +42,21 @@ export default function Opportunity() {
     const gridRef = useStaggerReveal();
 
     return (
-        <section className="py-24 md:py-32 bg-dark-card">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <section className="relative py-24 md:py-32 bg-dark-card overflow-hidden">
+            <div
+                className="absolute inset-0 opacity-20 bg-cover bg-center"
+                data-parallax-layer
+                data-depth="0.08"
+                style={{ backgroundImage: `url(${fluxoTrafegoImage.src})` }}
+            />
+            <div
+                className="absolute inset-0"
+                style={{
+                    background:
+                        "linear-gradient(to bottom, rgba(3, 6, 13, 0.85), rgba(3, 6, 13, 0.92))",
+                }}
+            />
+            <div className="section-shell relative z-10 max-w-[min(96vw,104rem)]" data-immersive-content>
                 <div className="text-center mb-16">
                     <span className="text-primary text-sm font-semibold tracking-widest uppercase">
                         Oportunidade

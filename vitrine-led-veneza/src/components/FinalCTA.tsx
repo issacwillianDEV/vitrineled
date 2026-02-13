@@ -27,7 +27,11 @@ export default function FinalCTA() {
             {/* Background glow */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
 
-            <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6" ref={sectionRef}>
+            <div
+                className="section-shell relative z-10 max-w-[min(96vw,106rem)]"
+                data-immersive-content
+                ref={sectionRef}
+            >
                 <div className="text-center mb-12">
                     <span className="text-primary text-sm font-semibold tracking-widest uppercase">
                         Pré-cadastro
@@ -72,7 +76,7 @@ export default function FinalCTA() {
                                         <span className="text-primary font-semibold">0/30</span>
                                     </div>
                                     <div className="h-2 bg-dark-surface rounded-full overflow-hidden">
-                                        <div className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full transition-all duration-500" style={{ width: "0%" }} />
+                                        <div className="h-full bg-primary rounded-full shadow-[0_0_14px_rgba(30,79,163,0.45)] transition-all duration-500" style={{ width: "0%" }} />
                                     </div>
                                 </div>
                                 <div>
@@ -81,7 +85,7 @@ export default function FinalCTA() {
                                         <span className="text-primary font-semibold">0/10</span>
                                     </div>
                                     <div className="h-2 bg-dark-surface rounded-full overflow-hidden">
-                                        <div className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full transition-all duration-500" style={{ width: "0%" }} />
+                                        <div className="h-full bg-accent rounded-full shadow-[0_0_14px_rgba(255,122,26,0.45)] transition-all duration-500" style={{ width: "0%" }} />
                                     </div>
                                 </div>
                             </div>

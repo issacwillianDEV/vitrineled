@@ -61,7 +61,7 @@ export default function Plans() {
 
     return (
         <section id="plans" className="py-24 md:py-32">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            <div className="section-shell max-w-[min(96vw,104rem)]" data-immersive-content>
                 <div className="text-center mb-16">
                     <span className="text-primary text-sm font-semibold tracking-widest uppercase">
                         Planos

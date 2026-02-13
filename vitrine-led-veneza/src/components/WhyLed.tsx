@@ -16,7 +16,11 @@ export default function WhyLed() {
 
     return (
         <section className="py-24 md:py-32">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6" ref={sectionRef}>
+            <div
+                className="section-shell max-w-[min(96vw,88rem)]"
+                data-immersive-content
+                ref={sectionRef}
+            >
                 <div className="text-center mb-16">
                     <span className="text-primary text-sm font-semibold tracking-widest uppercase">
                         Benefícios

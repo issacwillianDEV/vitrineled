@@ -25,7 +25,11 @@ export default function PrimeLed() {
             {/* Background glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
-            <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6" ref={sectionRef}>
+            <div
+                className="section-shell relative z-10 max-w-[min(96vw,90rem)]"
+                data-immersive-content
+                ref={sectionRef}
+            >
                 <div className="text-center mb-12">
                     <span className="text-primary text-sm font-semibold tracking-widest uppercase">
                         Exclusivo

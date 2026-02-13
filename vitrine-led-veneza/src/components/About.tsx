@@ -7,9 +7,13 @@ export default function About() {
 
     return (
         <section id="about" className="relative py-24 md:py-32">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center" ref={sectionRef}>
+            <div
+                className="section-shell max-w-[min(96vw,88rem)] text-center"
+                data-immersive-content
+                ref={sectionRef}
+            >
                 {/* Decorative line */}
-                <div className="w-12 h-1 bg-gradient-to-r from-primary to-primary-light rounded-full mx-auto mb-8" />
+                <div className="w-12 h-1 bg-primary rounded-full mx-auto mb-8 shadow-[0_0_16px_rgba(30,79,163,0.42)]" />
 
                 <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mb-8 leading-tight">
                     Transforme o fluxo em{" "}

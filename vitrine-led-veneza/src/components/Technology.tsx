@@ -1,6 +1,7 @@
 "use client";
 
 import { useStaggerReveal } from "@/lib/animations";
+import { macroLedPixelsImage } from "@/lib/siteAssets";
 
 const specs = [
     {
@@ -45,8 +46,21 @@ export default function Technology() {
     const gridRef = useStaggerReveal();
 
     return (
-        <section className="py-24 md:py-32 bg-dark-card">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <section className="relative py-24 md:py-32 bg-dark-card overflow-hidden">
+            <div
+                className="absolute inset-y-0 right-0 w-full md:w-1/2 opacity-20 bg-cover bg-center"
+                data-parallax-layer
+                data-depth="0.1"
+                style={{ backgroundImage: `url(${macroLedPixelsImage.src})` }}
+            />
+            <div
+                className="absolute inset-0"
+                style={{
+                    background:
+                        "linear-gradient(120deg, rgba(3, 6, 13, 0.9) 40%, rgba(3, 6, 13, 0.72) 100%)",
+                }}
+            />
+            <div className="section-shell relative z-10 max-w-[min(96vw,104rem)]" data-immersive-content>
                 <div className="text-center mb-16">
                     <span className="text-primary text-sm font-semibold tracking-widest uppercase">
                         Tecnologia

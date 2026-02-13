@@ -1,17 +1,26 @@
 "use client";
 
+import Image from "next/image";
+import { logoImage } from "@/lib/siteAssets";
+
 export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
         <footer className="border-t border-dark-border bg-dark-card">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+            <div className="section-shell max-w-[min(96vw,110rem)] py-12">
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
                     {/* Brand */}
                     <div>
                         <div className="flex items-center gap-2 mb-4">
-                            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-primary-dark flex items-center justify-center">
-                                <span className="text-black font-bold text-sm">V</span>
+                            <div className="w-8 h-8 rounded-lg bg-white/5 border border-white/20 shadow-[0_0_18px_rgba(30,79,163,0.35)] flex items-center justify-center overflow-hidden">
+                                <Image
+                                    src={logoImage}
+                                    alt="Logo Vitrine LED Veneza"
+                                    width={28}
+                                    height={28}
+                                    className="object-contain"
+                                />
                             </div>
                             <span className="font-display font-bold text-lg">
                                 <span className="gradient-text">Vitrine</span>{" "}
