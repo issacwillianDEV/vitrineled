@@ -56,7 +56,7 @@ export default function Hero() {
             className="relative min-h-screen flex items-center justify-center overflow-hidden"
         >
             {/* Background Image */}
-            <div className="absolute inset-0 z-0" data-parallax-layer data-depth="0.16">
+            <div className="absolute -inset-x-0 -inset-y-16 z-0" data-parallax-layer data-depth="0.09">
                 <Image
                     src={heroImage}
                     alt="Painel LED em rodovia no período noturno"
@@ -70,10 +70,17 @@ export default function Hero() {
                     className="absolute inset-0"
                     style={{
                         background:
-                            "radial-gradient(1200px 700px at 10% 10%, rgba(30, 79, 163, 0.08), transparent 62%), radial-gradient(900px 640px at 90% 80%, rgba(255, 122, 26, 0.04), transparent 65%), linear-gradient(to bottom, rgba(3,6,13,0.92), rgba(3,6,13,0.82) 35%, rgba(3,6,13,0.94) 100%)",
+                            "radial-gradient(1200px 700px at 10% 10%, rgba(30, 79, 163, 0.08), transparent 62%), radial-gradient(900px 640px at 90% 80%, rgba(255, 122, 26, 0.04), transparent 65%), linear-gradient(to bottom, rgba(3,6,13,0.93), rgba(3,6,13,0.84) 34%, rgba(3,6,13,0.97) 100%)",
                     }}
                 />
             </div>
+            <div
+                className="absolute inset-x-0 bottom-0 h-32 z-[1] pointer-events-none"
+                style={{
+                    background:
+                        "linear-gradient(to bottom, rgba(3,6,13,0), rgba(3,6,13,0.78) 45%, rgba(3,6,13,1) 100%)",
+                }}
+            />
 
             {/* Content */}
             <div
