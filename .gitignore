@@ -1,0 +1,9 @@
+# macOS metadata
+.DS_Store
+._*
+
+# Dependencies
+**/node_modules/
+
+# Local backups of nested repositories
+**/.git_backup_*/
