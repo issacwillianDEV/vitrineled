@@ -21,6 +21,7 @@ export default function ImmersiveScroll() {
         const content =
           section.querySelector<HTMLElement>("[data-immersive-content]") ??
           section.querySelector<HTMLElement>(".section-shell");
+        const skipReveal = section.hasAttribute("data-skip-immersive-reveal");
 
         ScrollTrigger.create({
           trigger: section,
@@ -32,7 +33,7 @@ export default function ImmersiveScroll() {
           onLeaveBack: () => section.classList.remove("immersive-active"),
         });
 
-        if (content && index > 0) {
+        if (content && index > 0 && !skipReveal) {
           gsap.fromTo(
             content,
             {

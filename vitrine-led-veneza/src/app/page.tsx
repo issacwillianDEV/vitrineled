@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Opportunity from "@/components/Opportunity";
 import Location from "@/components/Location";
+import BannerPreview from "@/components/BannerPreview";
 import Technology from "@/components/Technology";
 import WhyLed from "@/components/WhyLed";
 import ForWho from "@/components/ForWho";
@@ -30,6 +31,7 @@ export default function Home() {
         <About />
         <Opportunity />
         <Location />
+        <BannerPreview />
         <Technology />
         <WhyLed />
         <ForWho />
