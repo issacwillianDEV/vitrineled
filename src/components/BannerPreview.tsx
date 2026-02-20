@@ -229,18 +229,6 @@ export default function BannerPreview() {
                 </span>
               </div>
             </div>
-
-            <div className="grid md:grid-cols-3 gap-3 mt-3">
-              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 text-xs text-text-secondary">
-                Renderização 3D de alta performance com interatividade natural.
-              </div>
-              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 text-xs text-text-secondary">
-                Loop contínuo de vídeo em alta qualidade demonstrando o showcase.
-              </div>
-              <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 text-xs text-text-secondary">
-                Impacto imediato na percepção de valor: O requinte que o projeto exige.
-              </div>
-            </div>
           </div>
 
           <p
