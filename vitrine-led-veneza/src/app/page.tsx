@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Showcase3D from "@/components/Showcase3D";
 import About from "@/components/About";
 import Opportunity from "@/components/Opportunity";
 import Location from "@/components/Location";
@@ -28,6 +29,7 @@ export default function Home() {
       />
       <main className="overflow-x-clip">
         <Hero />
+        <Showcase3D />
         <About />
         <Opportunity />
         <Location />
