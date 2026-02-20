@@ -45,6 +45,22 @@ const specs = [
 export default function Technology() {
     const gridRef = useStaggerReveal();
 
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        const card = e.currentTarget;
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+        card.style.transform = `perspective(1200px) rotateY(${x * 24}deg) rotateX(${-y * 24}deg) translateY(-8px) scale(1.02)`;
+        card.style.transition = "transform 0.1s ease-out";
+    };
+
+    const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+        const card = e.currentTarget;
+        card.style.transform = `perspective(1200px) rotateY(0deg) rotateX(0deg) translateY(0px) scale(1)`;
+        card.style.transition = "transform 0.6s ease-out";
+    };
+
     return (
         <section className="relative py-24 md:py-32 bg-dark-card overflow-hidden">
             <div
@@ -75,15 +91,29 @@ export default function Technology() {
                     {specs.map((spec, i) => (
                         <div
                             key={i}
-                            className="glass-card rounded-2xl p-6 text-center group hover:bg-white/[0.06] transition-all duration-500 hover:-translate-y-1"
+                            onMouseMove={handleMouseMove}
+                            onMouseLeave={handleMouseLeave}
+                            className="glass-card rounded-2xl p-6 text-center group hover:bg-white/[0.08] transition-colors duration-500 cursor-pointer will-change-transform shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-[0_16px_48px_rgba(255,122,26,0.15)] z-10 relative"
+                            style={{ transformStyle: "preserve-3d" }}
                         >
-                            <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 text-primary group-hover:bg-primary/20 transition-colors duration-500">
+                            <div
+                                className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 text-primary group-hover:bg-primary/20 transition-all duration-500"
+                                style={{ transform: "translateZ(30px)" }}
+                            >
                                 {spec.icon}
                             </div>
-                            <h3 className="font-display font-semibold text-lg text-white mb-1">
+                            <h3
+                                className="font-display font-semibold text-lg text-white mb-1"
+                                style={{ transform: "translateZ(20px)" }}
+                            >
                                 {spec.title}
                             </h3>
-                            <p className="text-text-muted text-sm">{spec.detail}</p>
+                            <p
+                                className="text-text-muted text-sm"
+                                style={{ transform: "translateZ(10px)" }}
+                            >
+                                {spec.detail}
+                            </p>
                         </div>
                     ))}
                 </div>

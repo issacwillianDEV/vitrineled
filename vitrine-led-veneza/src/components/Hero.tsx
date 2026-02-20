@@ -85,7 +85,7 @@ export default function Hero() {
             {/* Content */}
             <div
                 data-immersive-content
-                className="section-shell relative z-10 max-w-[min(96vw,94rem)] text-center pt-20"
+                className="section-shell relative z-10 w-full max-w-[min(96vw,94rem)] text-center pt-24 pb-32 md:pb-40"
             >
                 <div
                     ref={titleRef}

@@ -4,6 +4,7 @@ import fluxoTrafegoImage from "../../imagens/fluxo-trafego.png";
 import macroLedPixelsImage from "../../imagens/macro-led-pixels.png";
 import textureGrainImage from "../../imagens/textura-grao-fumaca-leve.png";
 import logoImage from "../../imagens/logo.png";
+import logoBrancoImage from "../../public/images/logo_branco.png";
 
 export {
   heroImage,
@@ -12,4 +13,5 @@ export {
   macroLedPixelsImage,
   textureGrainImage,
   logoImage,
+  logoBrancoImage,
 };

@@ -6,7 +6,7 @@ export default function About() {
     const sectionRef = useScrollReveal();
 
     return (
-        <section id="about" className="relative py-24 md:py-32">
+        <section id="about" className="relative py-24 md:py-32 overflow-hidden">
             <div
                 className="section-shell max-w-[min(96vw,88rem)] text-center"
                 data-immersive-content

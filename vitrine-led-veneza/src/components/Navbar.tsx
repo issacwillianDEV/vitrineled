@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { logoImage } from "@/lib/siteAssets";
+import { logoImage, logoBrancoImage } from "@/lib/siteAssets";
 
 const navLinks = [
     { label: "O Projeto", href: "#about" },
@@ -42,16 +42,24 @@ export default function Navbar() {
                         {/* Logo */}
                         <button
                             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                            className="flex items-center group"
+                            className="flex items-center group relative w-[clamp(5.5rem,10vw,7rem)] h-12"
                         >
                             <Image
                                 src={logoImage}
                                 alt="Logo Vitrine LED Veneza"
-                                width={320}
-                                height={320}
+                                fill
                                 quality={100}
                                 sizes="(max-width: 768px) 88px, 112px"
-                                className="w-[clamp(5.5rem,10vw,7rem)] h-auto object-contain"
+                                className={`object-contain transition-opacity duration-300 md:opacity-100 ${scrolled ? 'opacity-0 md:opacity-100' : 'opacity-100'}`}
+                                priority
+                            />
+                            <Image
+                                src={logoBrancoImage}
+                                alt="Logo Vitrine LED Veneza Icon"
+                                fill
+                                quality={100}
+                                sizes="(max-width: 768px) 88px, 112px"
+                                className={`object-contain transition-opacity duration-300 md:hidden scale-110 object-left ${scrolled ? 'opacity-100' : 'opacity-0'}`}
                                 priority
                             />
                         </button>

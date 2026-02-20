@@ -15,7 +15,7 @@ export default function WhyLed() {
     const sectionRef = useScrollReveal();
 
     return (
-        <section className="py-24 md:py-32">
+        <section className="relative py-24 md:py-32 overflow-hidden">
             <div
                 className="section-shell max-w-[min(96vw,88rem)]"
                 data-immersive-content

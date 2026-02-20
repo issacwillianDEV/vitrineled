@@ -14,6 +14,7 @@ export default function BannerPreview() {
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const frameRef = useRef<HTMLDivElement>(null);
+  const tiltRef = useRef<HTMLDivElement>(null);
   const mediaRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const hintRef = useRef<HTMLParagraphElement>(null);
@@ -131,9 +132,38 @@ export default function BannerPreview() {
       });
     }, section);
 
+    // Mouse movement 3D tilt interaction
+    const tilt = tiltRef.current;
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!tilt) return;
+      const rect = tilt.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      gsap.to(tilt, {
+        rotateY: x * 18,
+        rotateX: -y * 18,
+        ease: "power2.out",
+        duration: 0.6,
+        transformPerspective: 1400,
+      });
+    };
+    const handleMouseLeave = () => {
+      if (!tilt) return;
+      gsap.to(tilt, { rotateY: 0, rotateX: 0, ease: "power3.out", duration: 1 });
+    };
+
+    if (tilt) {
+      tilt.addEventListener("mousemove", handleMouseMove);
+      tilt.addEventListener("mouseleave", handleMouseLeave);
+    }
+
     return () => {
       mm.revert();
       ctx.revert();
+      if (tilt) {
+        tilt.removeEventListener("mousemove", handleMouseMove);
+        tilt.removeEventListener("mouseleave", handleMouseLeave);
+      }
     };
   }, []);
 
@@ -156,27 +186,28 @@ export default function BannerPreview() {
       <div className="section-shell relative z-10 max-w-[min(96vw,108rem)]">
         <div ref={headerRef} className="text-center max-w-4xl mx-auto">
           <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase">
-            Preview Imersivo
+            Visão Tridimensional Interativa
           </span>
           <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mt-4 mb-4 leading-tight">
-            Prévia do ponto onde seu{" "}
-            <span className="gradient-text">banner vai dominar a atenção</span>
+            Interação tridimensional e{" "}
+            <span className="gradient-text">imersão de impacto</span>
           </h2>
           <p className="text-text-secondary text-lg leading-relaxed">
-            A próxima seção revela, em tempo de rolagem, como o banner ganha presença no trajeto.
-            Quando você enviar a GIF final, este frame vira a versão definitiva.
+            Passe o mouse sobre o painel e veja a modelagem 3D acompanhar o seu movimento.
+            É exatamente esse nível de alta tecnologia que envolve quem visualiza seu anúncio nas vias.
           </p>
         </div>
 
-        <div ref={frameRef} className="relative mx-auto mt-12 max-w-[min(96vw,76rem)]">
-          <div className="relative rounded-[2rem] border border-primary/40 bg-[rgba(8,15,29,0.88)] p-3 md:p-4 shadow-[0_25px_80px_rgba(3,9,18,0.72)] overflow-hidden">
+        <div ref={frameRef} className="relative mx-auto mt-12 max-w-[min(96vw,76rem)] cursor-pointer [perspective:2000px]">
+          <div ref={tiltRef} className="relative rounded-[2rem] border border-primary/40 bg-[rgba(8,15,29,0.88)] p-3 md:p-4 shadow-[0_25px_80px_rgba(3,9,18,0.72)] overflow-hidden transition-transform will-change-transform">
             <div ref={mediaRef} className="relative aspect-[16/9] rounded-[1.45rem] overflow-hidden">
-              <Image
-                src={bannerRodoviaImage}
-                alt="Prévia do posicionamento do banner na rodovia"
-                fill
-                sizes="(max-width: 768px) 96vw, 76rem"
-                className="object-cover"
+              <video
+                src="/videos/video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover"
               />
               <div
                 className="absolute inset-0"
@@ -201,13 +232,13 @@ export default function BannerPreview() {
 
             <div className="grid md:grid-cols-3 gap-3 mt-3">
               <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 text-xs text-text-secondary">
-                Entrada do bairro em ponto de alta recorrencia visual.
+                Renderização 3D de alta performance com interatividade natural.
               </div>
               <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 text-xs text-text-secondary">
-                Tracao noturna e diurna com leitura forte de marca.
+                Loop contínuo de vídeo em alta qualidade demonstrando o showcase.
               </div>
               <div className="rounded-xl border border-white/10 bg-white/[0.03] p-3 text-xs text-text-secondary">
-                Estrutura pronta para receber GIF/video de showcase final.
+                Impacto imediato na percepção de valor: O requinte que o projeto exige.
               </div>
             </div>
           </div>

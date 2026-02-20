@@ -26,7 +26,7 @@ export default function Home() {
         className="fixed inset-0 pointer-events-none z-[1] opacity-[0.06] mix-blend-soft-light bg-cover bg-center"
         style={{ backgroundImage: `url(${textureGrainImage.src})` }}
       />
-      <main>
+      <main className="overflow-x-clip">
         <Hero />
         <About />
         <Opportunity />

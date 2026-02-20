@@ -18,7 +18,7 @@ export default function ForWho() {
     const sectionRef = useScrollReveal();
 
     return (
-        <section className="py-24 md:py-32 bg-dark-card">
+        <section className="relative py-24 md:py-32 bg-dark-card overflow-hidden">
             <div
                 className="section-shell max-w-[min(96vw,104rem)]"
                 data-immersive-content

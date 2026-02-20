@@ -21,32 +21,32 @@ export default function PrimeLed() {
     };
 
     return (
-        <section className="py-24 md:py-32 bg-dark-card relative overflow-hidden">
+        <section className="py-20 md:py-24 bg-dark-card relative overflow-hidden">
             {/* Background glow */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
             <div
-                className="section-shell relative z-10 max-w-[min(96vw,90rem)]"
+                className="section-shell relative z-10 max-w-[min(96vw,68rem)]"
                 data-immersive-content
                 ref={sectionRef}
             >
-                <div className="text-center mb-12">
+                <div className="text-center mb-10 md:mb-12">
                     <span className="text-primary text-sm font-semibold tracking-widest uppercase">
                         Exclusivo
                     </span>
-                    <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mt-4 mb-4">
+                    <h2 className="font-display font-bold text-3xl md:text-4xl text-white mt-3 mb-3">
                         Núcleo{" "}
                         <span className="gradient-text">Prime LED</span>
                     </h2>
-                    <p className="text-text-secondary text-lg max-w-xl mx-auto">
+                    <p className="text-text-secondary text-base md:text-lg max-w-xl mx-auto">
                         O grupo premium de empresas com máxima visibilidade, conteúdo profissional e prioridade absoluta.
                     </p>
                 </div>
 
                 {/* Prime Card */}
                 <div className="plan-card-featured pulse-glow">
-                    <div className="p-8 md:p-12">
-                        <div className="flex flex-col md:flex-row md:items-start gap-8">
+                    <div className="p-8 md:p-10">
+                        <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-10">
                             {/* Left */}
                             <div className="flex-1">
                                 <div className="inline-flex items-center gap-2 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider px-3 py-1.5 rounded-full mb-6">
@@ -78,7 +78,7 @@ export default function PrimeLed() {
                             </div>
 
                             {/* Right — CTA */}
-                            <div className="md:w-72 flex flex-col items-center md:items-start md:pt-8">
+                            <div className="md:w-72 flex flex-col items-center">
                                 <div className="glass-card rounded-2xl p-6 text-center w-full mb-6">
                                     <p className="text-text-muted text-sm mb-2">Meta de vagas</p>
                                     <div className="font-display font-bold text-4xl gradient-text mb-1">10</div>
@@ -86,7 +86,7 @@ export default function PrimeLed() {
                                 </div>
                                 <button
                                     onClick={scrollToForm}
-                                    className="btn-glow w-full text-center"
+                                    className="btn-glow w-full text-center text-sm md:text-base"
                                 >
                                     Quero ser Prime
                                 </button>

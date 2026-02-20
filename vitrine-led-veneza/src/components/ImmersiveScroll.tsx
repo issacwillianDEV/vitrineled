@@ -37,20 +37,25 @@ export default function ImmersiveScroll() {
           gsap.fromTo(
             content,
             {
-              autoAlpha: 0.18,
-              y: 72,
-              filter: "blur(12px)",
+              autoAlpha: 0,
+              y: 120,
+              scale: 0.88,
+              rotateX: 25,
+              transformPerspective: 1400,
+              filter: "blur(16px)",
             },
             {
               autoAlpha: 1,
               y: 0,
+              scale: 1,
+              rotateX: 0,
               filter: "blur(0px)",
-              duration: 1.2,
-              ease: "power3.out",
+              duration: 1.4,
+              ease: "power4.out",
               scrollTrigger: {
                 trigger: section,
-                start: "top 86%",
-                end: "top 40%",
+                start: "top 88%",
+                end: "top 35%",
                 scrub: false,
               },
             }
@@ -75,41 +80,7 @@ export default function ImmersiveScroll() {
         });
       });
 
-      media.add("(min-width: 1024px)", () => {
-        const firstSection = sections[0];
 
-        const snapTrigger = ScrollTrigger.create({
-          start: () => window.innerHeight * 0.95,
-          end: "max",
-          snap: {
-            snapTo: (progress) => {
-              const max = ScrollTrigger.maxScroll(window);
-              if (!max) return progress;
-
-              const freeProgressUntil = firstSection
-                ? Math.min(0.999, (firstSection.offsetHeight * 0.92) / max)
-                : 0;
-
-              if (progress <= freeProgressUntil) return progress;
-
-              const points = sections.slice(1).map((section) => {
-                const offset = section.offsetTop;
-                return Math.min(1, Math.max(0, offset / max));
-              });
-
-              if (!points.length) return progress;
-              return gsap.utils.snap(points, progress);
-            },
-            duration: { min: 0.1, max: 0.24 },
-            delay: 0.04,
-            ease: "power2.out",
-          },
-        });
-
-        return () => {
-          snapTrigger.kill();
-        };
-      });
 
     });
 
