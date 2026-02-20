@@ -186,15 +186,14 @@ export default function BannerPreview() {
       <div className="section-shell relative z-10 max-w-[min(96vw,108rem)]">
         <div ref={headerRef} className="text-center max-w-4xl mx-auto">
           <span className="text-primary text-sm font-semibold tracking-[0.2em] uppercase">
-            Visão Tridimensional Interativa
+            A Experiência Real
           </span>
           <h2 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-white mt-4 mb-4 leading-tight">
-            Interação tridimensional e{" "}
-            <span className="gradient-text">imersão de impacto</span>
+            Veja como sua marca se {" "}
+            <span className="gradient-text">destaca na rodovia</span>
           </h2>
           <p className="text-text-secondary text-lg leading-relaxed">
-            Passe o mouse sobre o painel e veja a modelagem 3D acompanhar o seu movimento.
-            É exatamente esse nível de alta tecnologia que envolve quem visualiza seu anúncio nas vias.
+            Role a página e experimente na prática a força visual que nossa tela de alta definição entrega. É com essa exata proporção de brilho e movimento que os milhares de motoristas verão o seu anúncio todos os dias.
           </p>
         </div>
 
