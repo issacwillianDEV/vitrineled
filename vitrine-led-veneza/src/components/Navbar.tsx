@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { logoImage, logoBrancoImage } from "@/lib/siteAssets";
+import { logoBrancoImage } from "@/lib/siteAssets";
 
 const navLinks = [
     { label: "O Projeto", href: "#about" },
@@ -42,24 +42,15 @@ export default function Navbar() {
                         {/* Logo */}
                         <button
                             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                            className="flex items-center group relative w-[clamp(5.5rem,10vw,7rem)] h-12"
+                            className="flex items-center group relative w-[clamp(7.5rem,14vw,9.5rem)] h-14"
                         >
                             <Image
-                                src={logoImage}
+                                src={logoBrancoImage}
                                 alt="Logo Vitrine LED Veneza"
                                 fill
                                 quality={100}
-                                sizes="(max-width: 768px) 88px, 112px"
-                                className={`object-contain transition-opacity duration-300 md:opacity-100 ${scrolled ? 'opacity-0 md:opacity-100' : 'opacity-100'}`}
-                                priority
-                            />
-                            <Image
-                                src={logoBrancoImage}
-                                alt="Logo Vitrine LED Veneza Icon"
-                                fill
-                                quality={100}
-                                sizes="(max-width: 768px) 88px, 112px"
-                                className={`object-contain transition-opacity duration-300 md:hidden scale-110 object-left ${scrolled ? 'opacity-100' : 'opacity-0'}`}
+                                sizes="(max-width: 768px) 120px, 160px"
+                                className="object-contain object-left scale-125 md:scale-150 origin-left transition-transform duration-300"
                                 priority
                             />
                         </button>
