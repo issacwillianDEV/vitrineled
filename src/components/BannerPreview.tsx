@@ -202,7 +202,7 @@ export default function BannerPreview() {
           <div ref={tiltRef} className="relative rounded-[2rem] border border-primary/40 bg-[rgba(8,15,29,0.88)] p-3 md:p-4 shadow-[0_25px_80px_rgba(3,9,18,0.72)] overflow-hidden transition-transform will-change-transform">
             <div ref={mediaRef} className="relative aspect-[16/9] rounded-[1.45rem] overflow-hidden">
               <video
-                src="/videos/video.mp4"
+                src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/videos/video.mp4`}
                 autoPlay
                 loop
                 muted
