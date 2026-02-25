@@ -1,6 +1,11 @@
 export const FIRESTORE_COLLECTIONS = {
     preCadastros: "vitrineled_pre_cadastros",
+    login: "vitrineled_login",
 } as const;
+
+export const ADMIN_LOGIN_DOC_ID = "OzSy8iwaFRSFhNYQzmec";
+export const ADMIN_SESSION_KEY = "vitrineled_admin_session";
+export const CADASTRO_STATUS = ["novo", "contatado", "fechado", "cancelado"] as const;
 
 export const PRE_CADASTRO_PLANOS = [
     {
