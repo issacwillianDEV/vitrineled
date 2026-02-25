@@ -236,7 +236,8 @@ export default function AdminPanel() {
         };
 
         for (const item of cadastros) {
-            if (isValidStatus(String(item.status))) base[item.status] += 1;
+            const currentStatus = String(item.status);
+            if (isValidStatus(currentStatus)) base[currentStatus] += 1;
         }
 
         return base;
