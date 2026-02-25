@@ -2,6 +2,13 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "@/lib/firebase";
+import {
+    FIRESTORE_COLLECTIONS,
+    PRE_CADASTRO_INVESTIMENTOS,
+    PRE_CADASTRO_PLANOS,
+} from "@/lib/vitrineledConfig";
 
 const segmentos = [
     "Comércio local",
@@ -14,30 +21,6 @@ const segmentos = [
     "Rede / Grande marca",
     "Outro",
 ];
-
-const planos = [
-    { value: "essencial", label: "Visibilidade Essencial" },
-    { value: "destaque", label: "Destaque Estratégico" },
-    { value: "premium", label: "Impacto Premium" },
-    { value: "prime", label: "Núcleo Prime LED" },
-];
-
-const investimentoPorPlano: Record<string, { value: string; label: string }[]> = {
-    essencial: [
-        { value: "essencial_padrao", label: "Valor padrão: R$ 1.500,00/mês" },
-        { value: "essencial_promocao", label: "Promoção de inauguração: R$ 1.200,00/mês" },
-    ],
-    destaque: [
-        { value: "destaque_padrao", label: "Valor padrão: R$ 1.700,00/mês" },
-        { value: "destaque_promocao", label: "Promoção de inauguração: R$ 1.490,00/mês" },
-    ],
-    premium: [
-        { value: "premium_personalizado", label: "Plano Impacto Premium: proposta personalizada" },
-    ],
-    prime: [
-        { value: "prime_50_8x", label: "Núcleo Prime: 50% de entrada + 8x no cartão vinculado" },
-    ],
-};
 
 interface FormState {
     empresa: string;
@@ -70,7 +53,12 @@ export default function PreRegistrationForm() {
     const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
-    const investimentoOptions = form.plano ? investimentoPorPlano[form.plano] ?? [] : [];
+    const [submitError, setSubmitError] = useState<string | null>(null);
+    const investimentoOptions = form.plano
+        ? PRE_CADASTRO_INVESTIMENTOS[
+            form.plano as keyof typeof PRE_CADASTRO_INVESTIMENTOS
+        ] ?? []
+        : [];
 
     const update = (field: keyof FormState, value: string | boolean) => {
         setForm((prev) => {
@@ -112,15 +100,43 @@ export default function PreRegistrationForm() {
         return Object.keys(errs).length === 0;
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!validate()) return;
+        setSubmitError(null);
         setSubmitting(true);
-        // Simula envio (fase 1 — sem backend)
-        setTimeout(() => {
+
+        const planoSelecionado = PRE_CADASTRO_PLANOS.find((p) => p.value === form.plano);
+        const investimentoSelecionado = investimentoOptions.find(
+            (opt) => opt.value === form.investimento
+        );
+
+        try {
+            await addDoc(collection(db, FIRESTORE_COLLECTIONS.preCadastros), {
+                empresa: form.empresa.trim(),
+                responsavel: form.responsavel.trim(),
+                whatsapp: form.whatsapp.trim(),
+                email: form.email.trim().toLowerCase(),
+                segmento: form.segmento,
+                plano: form.plano,
+                planoLabel: planoSelecionado?.label ?? "",
+                investimento: form.investimento,
+                investimentoLabel: investimentoSelecionado?.label ?? "",
+                observacoes: form.observacoes.trim(),
+                indicacao: form.indicacao.trim(),
+                status: "novo",
+                origem: "landing_page",
+                createdAt: serverTimestamp(),
+                createdAtISO: new Date().toISOString(),
+            });
+
             setSubmitting(false);
             setSubmitted(true);
-        }, 1500);
+        } catch (error) {
+            console.error("Erro ao salvar pre-cadastro no Firebase:", error);
+            setSubmitting(false);
+            setSubmitError("Não foi possível enviar agora. Tente novamente em instantes.");
+        }
     };
 
     if (submitted) {
@@ -258,7 +274,7 @@ export default function PreRegistrationForm() {
                         onChange={(e) => update("plano", e.target.value)}
                     >
                         <option value="">Selecione...</option>
-                        {planos.map((p) => (
+                        {PRE_CADASTRO_PLANOS.map((p) => (
                             <option key={p.value} value={p.value}>{p.label}</option>
                         ))}
                     </select>
@@ -321,6 +337,10 @@ export default function PreRegistrationForm() {
                     </label>
                 </div>
             </div>
+
+            {submitError && (
+                <p className="text-red-400 text-sm mt-6">{submitError}</p>
+            )}
 
             {/* Submit */}
             <button
