@@ -22,6 +22,23 @@ const planos = [
     { value: "prime", label: "Núcleo Prime LED" },
 ];
 
+const investimentoPorPlano: Record<string, { value: string; label: string }[]> = {
+    essencial: [
+        { value: "essencial_padrao", label: "Valor padrão: R$ 1.500,00/mês" },
+        { value: "essencial_promocao", label: "Promoção de inauguração: R$ 1.200,00/mês" },
+    ],
+    destaque: [
+        { value: "destaque_padrao", label: "Valor padrão: R$ 1.700,00/mês" },
+        { value: "destaque_promocao", label: "Promoção de inauguração: R$ 1.490,00/mês" },
+    ],
+    premium: [
+        { value: "premium_personalizado", label: "Plano Impacto Premium: proposta personalizada" },
+    ],
+    prime: [
+        { value: "prime_50_8x", label: "Núcleo Prime: 50% de entrada + 8x no cartão vinculado" },
+    ],
+};
+
 interface FormState {
     empresa: string;
     responsavel: string;
@@ -29,6 +46,7 @@ interface FormState {
     email: string;
     segmento: string;
     plano: string;
+    investimento: string;
     observacoes: string;
     indicacao: string;
     lgpd: boolean;
@@ -41,6 +59,7 @@ const initialForm: FormState = {
     email: "",
     segmento: "",
     plano: "",
+    investimento: "",
     observacoes: "",
     indicacao: "",
     lgpd: false,
@@ -51,10 +70,23 @@ export default function PreRegistrationForm() {
     const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
     const [submitted, setSubmitted] = useState(false);
     const [submitting, setSubmitting] = useState(false);
+    const investimentoOptions = form.plano ? investimentoPorPlano[form.plano] ?? [] : [];
 
     const update = (field: keyof FormState, value: string | boolean) => {
-        setForm((prev) => ({ ...prev, [field]: value }));
+        setForm((prev) => {
+            if (field === "plano") {
+                return {
+                    ...prev,
+                    plano: value as string,
+                    investimento: "",
+                };
+            }
+            return { ...prev, [field]: value };
+        });
         if (errors[field]) setErrors((prev) => ({ ...prev, [field]: undefined }));
+        if (field === "plano" && errors.investimento) {
+            setErrors((prev) => ({ ...prev, investimento: undefined }));
+        }
     };
 
     const formatPhone = (v: string) => {
@@ -74,6 +106,7 @@ export default function PreRegistrationForm() {
             errs.email = "Informe um e-mail válido";
         if (!form.segmento) errs.segmento = "Selecione o segmento";
         if (!form.plano) errs.plano = "Selecione o plano de interesse";
+        if (!form.investimento) errs.investimento = "Selecione a condição de investimento";
         if (!form.lgpd) errs.lgpd = "Aceite os termos para continuar";
         setErrors(errs);
         return Object.keys(errs).length === 0;
@@ -230,6 +263,23 @@ export default function PreRegistrationForm() {
                         ))}
                     </select>
                     {errors.plano && <p className="text-red-400 text-xs mt-1">{errors.plano}</p>}
+                </div>
+
+                {/* Investimento */}
+                <div className="sm:col-span-2">
+                    <label className="text-text-secondary text-sm font-medium mb-1.5 block">Investimento *</label>
+                    <select
+                        className={`form-input ${errors.investimento ? "!border-red-500" : ""} ${!form.investimento ? "text-text-muted" : ""}`}
+                        value={form.investimento}
+                        onChange={(e) => update("investimento", e.target.value)}
+                        disabled={!form.plano}
+                    >
+                        <option value="">{form.plano ? "Selecione a condição..." : "Selecione um plano antes..."}</option>
+                        {investimentoOptions.map((opt) => (
+                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        ))}
+                    </select>
+                    {errors.investimento && <p className="text-red-400 text-xs mt-1">{errors.investimento}</p>}
                 </div>
 
                 {/* Observações */}

@@ -115,7 +115,7 @@ export default function Hero() {
                     className="text-lg sm:text-xl md:text-2xl text-text-secondary max-w-2xl mx-auto mb-4 leading-relaxed"
                     style={{ opacity: 0 }}
                 >
-                    O ponto onde sua marca deixa de passar despercebida.
+                    O ponto onde sua marca não passa despercebida.
                 </p>
 
                 <p className="text-primary font-semibold text-base sm:text-lg mb-10 italic">
